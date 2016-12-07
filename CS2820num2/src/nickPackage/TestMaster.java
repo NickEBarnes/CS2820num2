@@ -1,16 +1,16 @@
 package nickPackage;
 
-import src.Item;
-import src.ItemController;
-import src.Master;
-import src.MockBelt;
-import src.MockFloor;
-import src.MockRobot;
-import src.OrderControl;
-import src.Point;
-import src.RobotScheduler;
-import src.Test;
-import src.Visualizer;
+//import src.Item;
+//import src.ItemController;
+//import src.Master;
+//import src.MockBelt;
+//import src.MockFloor;
+//import src.MockRobot;
+//import src.OrderControl;
+//import src.Point;
+//import src.RobotScheduler;
+//import src.Test;
+//import src.Visualizer;
 
 /**
  * 
@@ -18,7 +18,7 @@ import src.Visualizer;
  */
 public class TestMaster {
 	
-	@Test
+	//@Test
 	public void test000() {	
 		// Doing unit test
 		MockFloor F = new MockFloor();
