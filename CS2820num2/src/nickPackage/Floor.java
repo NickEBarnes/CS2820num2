@@ -23,7 +23,7 @@ public interface Floor {
      * @return ArrayList returns a route from start to end of type Directions ex [LEFT,RIGHT,UP,DOWN,DOWN]
      */ 
 	public static ArrayList<MockFloor.Directions> getRoute(Point start, Point end) {
-		ArrayList<Directions> route = new ArrayList<>();
+		ArrayList<MockFloor.Directions> route = new ArrayList<>();
         Point currentLocation = new Point(start.getX(),start.getY(),"currentLocation");
         // alternator will alternate between odd and even so that the robot will move
         // in either the x or y direction until it is in line with either the x or y
@@ -40,7 +40,7 @@ public interface Floor {
                     tempLocation.setPoint(tempLocation.getX()+1, tempLocation.getY()); 
                     if(tempLocation.getX()<UPPERB) {
                         currentLocation.setPoint(currentLocation.getX()+1,currentLocation.getY());
-                        route.add(Directions.RIGHT);
+                        route.add(MockFloor.Directions.RIGHT);
                     }
                 }
                 else {
@@ -48,7 +48,7 @@ public interface Floor {
                     
                     if( tempLocation.getX()>LOWERB ) {
                     	currentLocation.setPoint(currentLocation.getX()-1,currentLocation.getY());
-                        route.add(Directions.LEFT);
+                        route.add(MockFloor.Directions.LEFT);
                     }
                 }
             }else if(alternator%2==1 && currentLocation.getY() != end.getY()) {
@@ -62,14 +62,14 @@ public interface Floor {
                     
                     if( tempLocation.getY()>LOWERB) {
                     	currentLocation.setPoint(currentLocation.getX(),currentLocation.getY()+1);
-                        route.add(Directions.DOWN);
+                        route.add(MockFloor.Directions.DOWN);
                     }
                 }
                 else {
                 	tempLocation.setPoint(tempLocation.getX(), tempLocation.getY()-1);
                     if( tempLocation.getY()<UPPERB) {
                     	currentLocation.setPoint(currentLocation.getX(),currentLocation.getY()-1);
-                        route.add(Directions.UP);
+                        route.add(MockFloor.Directions.UP);
                     }
                 }
             }
