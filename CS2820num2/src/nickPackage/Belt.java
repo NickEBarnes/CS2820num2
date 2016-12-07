@@ -10,14 +10,14 @@ package nickPackage;
 //integration with items in the orders still needed, will be involved 
 //later
 
-import java.util.*;
+//import java.util.*;
 //Ted Herman, Nicholas Barnes
 //Hello 2
 
-public interface Belt {
-MockFloor f = new MockFloor();
-boolean binAvailable();  // true if Picker can get a new Bin
-Bin getBin();  // called by Orders when Picker wants a new Bin 
+public class Belt {
+public static MockFloor f = new MockFloor();
+//boolean binAvailable();  // true if Picker can get a new Bin
+//Bin getBin();  // called by Orders when Picker wants a new Bin 
 public static MockBelt mb = new MockBelt(f);
 //public static MockFloor mf;
 public static Point[] pickBelt = f.PICKERBELT;//{ new Point(0,5,"PICKERBELT5"),new Point(0,4,"PICKERBELT4"),new Point(0,3,"PICKERBELT3") };
@@ -68,7 +68,9 @@ public Belt(){
 	  
 	  
 }
-public void tick(int count);
+public void tick(int count){
+	
+}
 // private boolean isMovable();
 
 // public static String getBeltItem(Point p){
