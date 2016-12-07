@@ -37,8 +37,9 @@ public class Cell  {
 	    
  }
  public Object cellType(Point p1){
-	   System.out.println(p1.getObject().toString());
-	   return p1.getObject();
+	  // System.out.println(p1.getObject().toString());
+	  // return p1.getObject();
+	 return (Object)p1;
 	   
  }
  public boolean isBin(Point p1){
