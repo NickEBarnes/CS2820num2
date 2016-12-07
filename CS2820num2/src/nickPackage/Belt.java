@@ -63,14 +63,12 @@ public Belt(){
 	  System.out.println("Belt spot 4: " + pickBelt[0].getName());
 	  System.out.println("Belt spot 5: " + pickBelt[1].getName());
 	  System.out.println("Belt spot 6: " + pickBelt[2].getName());
-	  System.
+	  //System.
 	  
 	  
 	  
 }
-public void tick(int count){
-	  
-}
+public void tick(int count);
 // private boolean isMovable();
 
 // public static String getBeltItem(Point p){
