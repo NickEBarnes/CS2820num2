@@ -126,8 +126,8 @@ public class MockRobot implements Robot, Tickable /* Report*/{
 	}
 	@Override
 	public void tick(int tick) {
-		System.out.println(tick+":Robot "+this.ID+" State:"+this.state);
-		System.out.println(tick+":Robot "+this.ID+" Position:"+this.p.getX()+" "+this.p.getY());
+		//System.out.println(tick+":Robot "+this.ID+" State:"+this.state);
+		//System.out.println(tick+":Robot "+this.ID+" Position:"+this.p.getX()+" "+this.p.getY());
 		//Detecting collision
 		if(I!=null&&I.hasNext()&&this.temp==null) {
 			//int[] myposition=new warehouse_system.floor.Floor().getLocation(this.getID());
@@ -135,7 +135,7 @@ public class MockRobot implements Robot, Tickable /* Report*/{
 			//if(new warehouse_system.floor.Floor().objectAt(nextstep(myposition,temp))) {
 			Point flag = new Point(nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[0],nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[1],"flag");
 			if(sys.collisioncheck(flag)) {
-				System.out.println("Robot "+this.ID+":There is something blocking my way! Waiting...");
+				//System.out.println("Robot "+this.ID+":There is something blocking my way! Waiting...");
 			} else {
 				this.p =new Point(nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[0],nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[1],"temp");
 				temp=null;
@@ -143,7 +143,7 @@ public class MockRobot implements Robot, Tickable /* Report*/{
 		} else if(temp!=null) {
 			Point flag = new Point(nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[0],nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[1],"new Point");
 			if(sys.collisioncheck(flag)) {
-				System.out.println("Robot "+this.ID+":There is something blocking my way! Waiting...");
+				//System.out.println("Robot "+this.ID+":There is something blocking my way! Waiting...");
 			} else {
 				this.p=new Point(nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[0],nextstep(new int[]{this.p.getX(),this.p.getY()},temp)[1],"temp");
 				temp=null;
