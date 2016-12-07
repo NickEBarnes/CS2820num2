@@ -1,6 +1,6 @@
 package nickPackage;
 
-import java.util.*;
+//import java.util.*;
 
 //import warehouse_system.orders.*;
 //import warehouse_system.*;
@@ -76,7 +76,7 @@ public class Bin  {
     
     public void addBin(Order o){
     	setFinished();
-    	Order myOrd = o;
+    	//Order myOrd = o;
     //	Bin b = new Bin(o);
     }
     
