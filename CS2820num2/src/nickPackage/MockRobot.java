@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import production_unitTesting.Floor;
-import production_unitTesting.Point;
-import production_unitTesting.Report;
-import production_unitTesting.Tickable;
-import production_unitTesting.MockFloor.Directions;
+
 
 
 /**
@@ -17,7 +13,7 @@ import production_unitTesting.MockFloor.Directions;
  * @author Wei Gui
  *
  */
-public class MockRobot implements Robot, Tickable, Report{
+public class MockRobot implements Robot, Tickable /* Report*/{
 	public static int ROBOT_STATE_IDLE=0;
 	public static int ROBOT_STATE_CARRYING=1;
 	public static int ROBOT_STATE_CHARGING=2;
@@ -25,11 +21,11 @@ public class MockRobot implements Robot, Tickable, Report{
 	public static int ROBOT_STATE_BACK=4;
 	private final String ID;
 	private int state=ROBOT_STATE_IDLE;
-	private ArrayList<Directions> route;
+	private ArrayList<MockFloor.Directions> route;
 	private Object i;//item
 	private Object d;//destination
-	private Iterator<Directions> I;
-	private Directions temp=null;
+	private Iterator<MockFloor.Directions> I;
+	private MockFloor.Directions temp=null;
 	private Point p;
 	private RobotScheduler sys;
 	public boolean chargecompleted=false;//for testing only
@@ -65,19 +61,19 @@ public class MockRobot implements Robot, Tickable, Report{
 		//Assume that the FloorSubsystem would give me the right direction here
 		//this.route=new warehouse_system.floor.Floor().getRoute(new int[]{0,0},new int[]{5,5});
 		///////////////FOR TEST USE ONLY
-		this.route=new ArrayList<Directions>();
+		this.route=new ArrayList<MockFloor.Directions>();
 		if(this.p.getX()==3) {
-			this.route.add(Directions.UP);
-			this.route.add(Directions.UP);
-			this.route.add(Directions.UP);
-			this.route.add(Directions.UP);
-			this.route.add(Directions.UP);
+			this.route.add(MockFloor.Directions.UP);
+			this.route.add(MockFloor.Directions.UP);
+			this.route.add(MockFloor.Directions.UP);
+			this.route.add(MockFloor.Directions.UP);
+			this.route.add(MockFloor.Directions.UP);
 		} else {
-			this.route.add(Directions.RIGHT);
-			this.route.add(Directions.RIGHT);
-			this.route.add(Directions.RIGHT);
-			this.route.add(Directions.RIGHT);
-			this.route.add(Directions.RIGHT);
+			this.route.add(MockFloor.Directions.RIGHT);
+			this.route.add(MockFloor.Directions.RIGHT);
+			this.route.add(MockFloor.Directions.RIGHT);
+			this.route.add(MockFloor.Directions.RIGHT);
+			this.route.add(MockFloor.Directions.RIGHT);
 		}
 		///////////////FOR TEST USE ONLY
 		this.I=this.route.iterator();
@@ -109,19 +105,19 @@ public class MockRobot implements Robot, Tickable, Report{
 		//Assume that the FloorSubsystem would give me the right direction here
 		//this.route=new warehouse_system.floor.Floor().getRoute(new int[]{d.hashCode(),0},new int[]{i.hashCode(),5});
 		///////////////FOR TEST USE ONLY
-		this.route=new ArrayList<Directions>();
+		this.route=new ArrayList<MockFloor.Directions>();
 		if(this.p.getX()==3) {
-			this.route.add(Directions.DOWN);
-			this.route.add(Directions.DOWN);
-			this.route.add(Directions.DOWN);
-			this.route.add(Directions.DOWN);
-			this.route.add(Directions.DOWN);
+			this.route.add(MockFloor.Directions.DOWN);
+			this.route.add(MockFloor.Directions.DOWN);
+			this.route.add(MockFloor.Directions.DOWN);
+			this.route.add(MockFloor.Directions.DOWN);
+			this.route.add(MockFloor.Directions.DOWN);
 		} else {
-			this.route.add(Directions.LEFT);
-			this.route.add(Directions.LEFT);
-			this.route.add(Directions.LEFT);
-			this.route.add(Directions.LEFT);
-			this.route.add(Directions.LEFT);
+			this.route.add(MockFloor.Directions.LEFT);
+			this.route.add(MockFloor.Directions.LEFT);
+			this.route.add(MockFloor.Directions.LEFT);
+			this.route.add(MockFloor.Directions.LEFT);
+			this.route.add(MockFloor.Directions.LEFT);
 
 		}
 		///////////////FOR TEST USE ONLY
@@ -189,23 +185,23 @@ public class MockRobot implements Robot, Tickable, Report{
 
 	}
 
-	public static int[] nextstep(int[] pos,Directions d) {
-		if(d==Directions.DOWN) {
+	public static int[] nextstep(int[] pos,MockFloor.Directions d) {
+		if(d==MockFloor.Directions.DOWN) {
 			return(new int[]{pos[0],pos[1]-1});
 		}
-		if(d==Directions.UP) {
+		if(d==MockFloor.Directions.UP) {
 			return(new int[]{pos[0],pos[1]+1});
 		}
-		if(d==Directions.LEFT) {
+		if(d==MockFloor.Directions.LEFT) {
 			return(new int[]{pos[0]-1,pos[1]});
 		}
-		if(d==Directions.RIGHT) {
+		if(d==MockFloor.Directions.RIGHT) {
 			return(new int[]{pos[0]+1,pos[1]});
 		}
 		return null;
 	}
 
-	@Override
+	//@Override
 	public void printEvent(String event) {
 		System.out.println("Robot " + ID + ": " + event);
 	}
