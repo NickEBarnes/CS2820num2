@@ -16,7 +16,7 @@ package nickPackage;
  * @author Di Huang
  *
  */
-public class Master /*implements Runnable*/ {
+public class Master implements Runnable {
 	/**
 	 * 1. Master starts and continues simulation process
 	 * 2. Ticking Simulation: Master publishes ticks to other components
