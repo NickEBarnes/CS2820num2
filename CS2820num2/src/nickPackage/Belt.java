@@ -14,7 +14,7 @@ package nickPackage;
 //Ted Herman, Nicholas Barnes
 //Hello 2
 
-public class Belt {
+public interface Belt {
 public static MockFloor f = new MockFloor();
 //boolean binAvailable();  // true if Picker can get a new Bin
 //Bin getBin();  // called by Orders when Picker wants a new Bin 
@@ -33,50 +33,50 @@ public static Point startPack = packBelt[3];
 public static Point endPick = pickBelt[2];
 public static Point endPack = packBelt[5];
 
-public Belt(){
-	  Point curr1 = pickBelt[0];
-	  Point curr2 = pickBelt[1];
-	  Point curr3 = pickBelt[2];
-	  Point pickHold;
-	  System.out.println("Belt spot 1: " + pick1);
-	  System.out.println("Belt spot 2: " + pick2);
-	  System.out.println("Belt spot 3: " + pick3);
-	  pickBelt[1] = curr1;
-	  pickBelt[2] = curr2;
-	  pickHold = curr3;
-	  System.out.println("Getting packed: " + pickHold.getName());
-	  System.out.println("Belt spot 1: " + pickBelt[0].getName());
-	  System.out.println("Belt spot 2: " + pickBelt[1].getName());
-	  System.out.println("Belt spot 3: " + pickBelt[2].getName());
+//public Belt()/*{
+//	  Point curr1 = pickBelt[0];
+//	  Point curr2 = pickBelt[1];
+//	  Point curr3 = pickBelt[2];
+//	  Point pickHold;
+//	  System.out.println("Belt spot 1: " + pick1);
+//	  System.out.println("Belt spot 2: " + pick2);
+//	  System.out.println("Belt spot 3: " + pick3);
+//	  pickBelt[1] = curr1;
+//	  pickBelt[2] = curr2;
+//	  pickHold = curr3;
+//	  System.out.println("Getting packed: " + pickHold.getName());
+//	  System.out.println("Belt spot 1: " + pickBelt[0].getName());
+//	  System.out.println("Belt spot 2: " + pickBelt[1].getName());
+//	  System.out.println("Belt spot 3: " + pickBelt[2].getName());
+//	  
+//	  Point curr4 = pickBelt[3];
+//	  Point curr5 = pickBelt[4];
+//	  Point curr6 = pickBelt[5];
+//	  Point ready;
+//	  System.out.println("Belt spot 4: " + pick1);
+//	  System.out.println("Belt spot 5: " + pick2);
+//	  System.out.println("Belt spot 6: " + pick3);
+//	  pickBelt[1] = curr1;
+//	  pickBelt[2] = curr2;
+//	  ready = curr3;
+//	  System.out.println("Getting packed: " + pickHold.getName());
+//	  System.out.println("Belt spot 4: " + pickBelt[0].getName());
+//	  System.out.println("Belt spot 5: " + pickBelt[1].getName());
+//	  System.out.println("Belt spot 6: " + pickBelt[2].getName());
+//	  //System.
 	  
-	  Point curr4 = pickBelt[3];
-	  Point curr5 = pickBelt[4];
-	  Point curr6 = pickBelt[5];
-	  Point ready;
-	  System.out.println("Belt spot 4: " + pick1);
-	  System.out.println("Belt spot 5: " + pick2);
-	  System.out.println("Belt spot 6: " + pick3);
-	  pickBelt[1] = curr1;
-	  pickBelt[2] = curr2;
-	  ready = curr3;
-	  System.out.println("Getting packed: " + pickHold.getName());
-	  System.out.println("Belt spot 4: " + pickBelt[0].getName());
-	  System.out.println("Belt spot 5: " + pickBelt[1].getName());
-	  System.out.println("Belt spot 6: " + pickBelt[2].getName());
-	  //System.
 	  
 	  
-	  
-}
-public void tick(int count){
-	
+//}*/
+  public void tick(int count);
+  
 }
 // private boolean isMovable();
 
 // public static String getBeltItem(Point p){
 //	   return p.getName();
 // }
-}
+//}
 
 //public class Belt implements Tickable, Report{
 //	protected static int speed;
