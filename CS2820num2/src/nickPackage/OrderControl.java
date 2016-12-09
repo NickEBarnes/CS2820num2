@@ -107,7 +107,7 @@ public class OrderControl implements Tickable {
 		
 		if(currentOrder == null) {
 			currentOrder = orderQueue.pop();
-			System.out.println("OrderControll starts a new Order");
+			//System.out.println("OrderControll starts a new Order");
 			//set currentOrder to first Order in OrderQueue
 		}
 		

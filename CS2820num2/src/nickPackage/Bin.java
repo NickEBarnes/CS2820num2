@@ -1,5 +1,7 @@
 package nickPackage;
 
+import nickPackage.Belt;
+
 //import java.util.*;
 
 //import warehouse_system.orders.*;
@@ -26,27 +28,37 @@ package nickPackage;
 //  public void setOrder(Order o) { order = o; }
 //  }
 
-public class Bin  {
-    //for binList, 0 is starting position, 19 is last position
-    Order order;
-	boolean finished = false;
-	int idnum = 0;
+public class Bin extends Belt {
+    public Order binOrder;
+    private static Point startlocation = pickBelt[0];
+    private Point location;
+	private boolean finished = false;
+	String itemName;
+	
 	
 	public Bin() {
-		order = null;
+		binOrder = null;
 		finished = false;
+		System.out.println("Bin needs args");
 		
-		//Create random number 0 - 99
-		double randNumber = (Math.random() * 100);
-		idnum = (int)randNumber; 
+
 
 		
 	}
-	public Bin(Order o, int id){
-		order = o;
+	public Bin(Order o, Point p){
+		binOrder = o;
+		this.location = p;
 		finished = false;
-		idnum = id;
+		itemName = binOrder.getItemBeingOrderedName();
+	
 	}
+	public Point getBinLocation(){
+		return location;
+	}
+	public void setBinLocation(Point p){
+		location = p;
+	}
+	
 	public boolean isFinished(){
 		//if order = bin then it is finished
 		return finished;
@@ -57,29 +69,32 @@ public class Bin  {
 		System.out.println("Order is finished");
 	}
 
-	
-	//Hashmap for an <orderNumber, itemID>
-	//Map<Integer, Integer> order = new HashMap<Integer, Integer>();
-    
-	
-//	public int binBin = 1;
-    
-//    public Bin(){
-//    	 order.put(Belt.orderNum, 322);
-//    }
     public Order getOrder(){
-    	return order;
+    	return binOrder;
     }
     public void setOrder(Order o) { 
-    	order = o; 
+    	this.binOrder = o; 
     }
     
-    public void addBin(Order o){
-    	setFinished();
+    public static void pickerAdd(Order o){
+    	System.out.println("Picker completes order, puts on belt");
+    	Bin b = new Bin(o, pickBelt[0]);
+    	pickBins.add(b);
     	//Order myOrd = o;
     //	Bin b = new Bin(o);
     }
     
-    //this is where orders will be saved to a bin, will need to wait
-    //for integration otherwise I am not too sure how to do that
+    
+
+		
+    
+    public static void populateBins(){
+    	for (Bin b : pickBins) {
+    	     Point p = b.getBinLocation();
+    	     if(p == pickBelt[3]){
+    	    	 packParcels.add(Parcel.packIt(pickBins.remove(0)));
+    	}
+    }
+    
+    }
 }
