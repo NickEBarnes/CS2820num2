@@ -2,19 +2,27 @@ package nickPackage;
 
 
 import java.util.*;
+import nickPackage.Bin;
+import nickPackage.Parcel;
+//import nickPackage.Master;
 
 
 
-/*
+/**
  * 
- * Author: Ted Herman, Nicholas Barnes
+ * @author: Ted Herman, Nicholas Barnes
+ *
+ * 
+ * Belt class implements Tickable to be able to use methods in the interface.
+ * This class contains a significant portion of the functionality.
  * 
  */
 
-
 public class Belt implements Tickable {
 	
-	
+	/**
+	 * All initializations of different aspects of belt and so on.
+	 */
 	public static Point[] packBelt = { new Point(0,4),new Point(0,5),new Point(0,6),new Point(0,7) };
     //public static Point packinIt = new Point(0,3);
     public static Point[] pickBelt = {new Point(0,0), new Point(0,1),new Point(0,2),new Point(0,3) };
@@ -57,11 +65,22 @@ public class Belt implements Tickable {
 	//packParcels.add(mock);
 	
 	
-	//not used but included since in interface
+	/**
+	 * This was in the group interface for tickable
+	 * I didn't use it, but kept it included so the compiler
+	 * would be happy.
+	 * 
+	 * @param suspticks
+	 * @param currtick
+	 */
 	public boolean suspend(int suspticks, int currtick){
 		return true;
 	}
-
+	
+/**
+ * Default constructor
+ * 
+ */
 public Belt(){
 		Point curr1 = pickBelt[0];
 		Point curr2 = pickBelt[1];
@@ -108,6 +127,14 @@ public Belt(){
 
 
    //@Override
+
+/**
+ *  The tick method for the belt starts by adding a random order to a bin and 
+ *  placing it on the belt and will continue at a given interval, it runs through
+ *  the linkedlists that correspond to each belt and outputs the state of the belts
+ *  throughout. 
+ * @param count
+ */
    public void tick(int count){
 	  int randomIndex = rn.nextInt(9);
  	  count = count + 1;
@@ -173,25 +200,59 @@ public Belt(){
  	  
       
   }
-   //picker method
+   
+   
+   /**
+    * 
+    * This is essentially the picker method, takes an order puts it in a bin and
+    * then puts it on the belt
+    * 
+    * @param order
+    */
    public static void addBin(Order order){
  	    Bin b = new Bin(order, startPick);
  		pickBins.add(b);
  		System.out.println("New Bin: " + order.getItemBeingOrderedName());
  	} 
    
-    //packer method
+/**
+ * This will create a parcel when given a bin, essentially just a method that will
+ * be a wrapper to a Bin but makes it easier to understand the flow of the belt
+ * 
+ * @param bin
+ * @return Parcel
+ */
  	private static Parcel getParcel(Bin bin) {
  		//System.out.println("Loaded Parcel: x " + startPack.getName() );
  		//packParcels.add( new Parcel(bin.order, startPack));
  		return new Parcel( bin.order, startPack);
  	}
+ 	
+ 	
+ 	/**
+ 	 * get the linked list of bins
+ 	 * @return 
+ 	 */
     public LinkedList<Bin> getPickList(){
  	   return pickBins;
     }
+    
+    
+    /**
+     * get the linked list of parcels
+     * @return
+     */
     public LinkedList<Parcel> getPackList(){
  	   return packParcels;
    }
+    
+    /**
+     * This method will iterate through the parcels that have been added
+     * to the linked list of items that finished going through the belt.
+     * Prints a list of everything that was "delivered"
+     * 
+     * 
+     */
     public static void printAllParcels(){
     	System.out.println("\nItems delivered today: ");
     	int ordNum = 1;
@@ -201,13 +262,6 @@ public Belt(){
     		ordNum++;
     	}
     }
-    
-//   public void check(int i){
-// 	   
-//   }
-   
- 
-   
-   
+      
 }
 
