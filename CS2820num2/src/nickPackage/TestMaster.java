@@ -46,8 +46,8 @@ public class TestMaster {
 		Visualizer V = new Visualizer(F);
 		
 		Master M = new Master(B, F, I, O, R, V);
-		M.setLimit(10);
-		M.setUnitTime(0);
+		M.setLimit(100);
+		M.setUnitTime(200);
 		M.start();
 	}
 	

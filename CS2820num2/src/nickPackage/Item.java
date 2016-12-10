@@ -19,6 +19,12 @@ public class Item {
 	public String shelfID;
 	public int row;
 	
+	public Item(String name){
+	    this.name = name;
+	    this.quantity = 0;
+	    this.shelfID = "Empty";
+	}
+	
 	public Item(String name, int quantity, String shelfID) {
 		this.name = name;
 		//this.weight = weight;

@@ -24,7 +24,7 @@ public class Production {
 	public static void main(String[] args) {
 		// Doing unit test
 		MockFloor F = new MockFloor();
-		MockBelt B = new MockBelt(F);
+		Belt B = new Belt();
 		RobotScheduler R = new RobotScheduler(2);
 		Point robotP = new Point(0,3);
 		MockRobot r001= new MockRobot("001", robotP, R );
@@ -58,8 +58,8 @@ public class Production {
 		Visualizer V = new Visualizer(F);
 		
 		Master M = new Master(B, F, I, O, R, V);
-		M.setLimit(10);
-		M.setUnitTime(0);
+		M.setLimit(100);
+		M.setUnitTime(1000);
 		M.start();
 
 	}

@@ -31,6 +31,9 @@ public class Order {
         this.shippingAddress = shippingAddress;
 
     }
+    public Order(Item name){
+    	this.itemBeingOrdered = name;
+    }
     
     /**
      * @author Charles Carlson

@@ -26,25 +26,7 @@ public class MockBelt extends Belt{
    public MockBelt(){
       
    }
-	Item RED_SHIRT = new Item("RED_SHIRT", 200, "1");
-	Item BLUE_SHIRT = new Item("BLUE_SHIRT", 300, "1");
-	Item BICYCLE = new Item("BICYCLE", 2, "2");
-	Item BASKETBALL = new Item("BASKETBALL", 50, "2");
-	Item SHAVING_CREAM= new Item("SHAVING_CREAM", 10, "3");
-	Item DUCT_TAPE = new Item("DUCT_TAPE", 1, "3");
-	Item BOOK = new Item("BOOK", 20, "4");
-	Item EGG_PLANT = new Item("EGG_PLANT", 2000, "5");
-	Item FLUTE = new Item("FLUTE", 5, "6");
-    
-	Order order1 = new Order(RED_SHIRT, 2, "501 South Dodge Street");
-	Order order2 = new Order(BLUE_SHIRT, 5, "313 South Gilbert Street");
-	Order order3 = new Order(BICYCLE, 1, "613 East Court Street");
-	Order order4 = new Order(BASKETBALL, 2, "512 North Dodge Street");
-	Order order5 = new Order(SHAVING_CREAM, 4, "902 Davenport Street");
-	Order order6 = new Order(DUCT_TAPE, 1, "451 East Market Street");
-	Order order7 = new Order(BOOK, 1, "222 Governor Street");
-	Order order8 = new Order(EGG_PLANT, 1, "378 Lucas Street");
-	Order order9 = new Order(FLUTE, 1, "987 Clinton Ave");
+
 //public void buildBelt(){
 //	  Point curr1 = pickBelt[0];
 //	  Point curr2 = pickBelt[1];
@@ -111,7 +93,12 @@ public class MockBelt extends Belt{
    * collecting a lot of parcels and grouping them into a truck
    *
    */
+
    int lasttick = -1;
+   
+//   public Order empty(){
+//	   return 
+//   }
   
 	public boolean suspend(int suspticks, int currtick){
 		if(currtick == lasttick + suspticks){
@@ -121,11 +108,7 @@ public class MockBelt extends Belt{
 			return false;
 		}
 	}
-  public void tick(int count) {
-	  doPicker(order1);
-	  
-//	   runBelt();
-  }
+
 //	
 //         Bin.populateBins();
 //         Parcel.populateParcel();
@@ -227,9 +210,9 @@ public class MockBelt extends Belt{
 	//if (0,0) doesn't have a bin, return true
     }
  
-  public Bin getBin() {
-	return new Bin(); 
-    }
+//  public Bin getBin() {
+//	return new Bin(); 
+//    }
   
   public void beltContents(Point p){
      // String s1 = c2.getCell(p);

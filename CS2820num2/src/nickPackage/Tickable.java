@@ -13,4 +13,6 @@ public interface Tickable {
 	 */
 	public void tick(int tick);
 	
+	public boolean suspend(int suspticks, int currtick);
+	
 }

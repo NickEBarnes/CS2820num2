@@ -18,7 +18,7 @@ public class OrderControl implements Tickable {
 	private LinkedList<Order> orderQueue;
 	private ItemController I;
 	private RobotScheduler R;
-	private MockBelt B;
+	private Belt B;
 	private Order currentOrder;
 	
 	/**
@@ -60,7 +60,7 @@ public class OrderControl implements Tickable {
 	 * probably Belt soon
 	 * 
 	 */
-	public OrderControl(ItemController I, RobotScheduler R, MockBelt B) {
+	public OrderControl(ItemController I, RobotScheduler R, Belt B) {
 		this.I = I;
 		this.R = R;
 		this.B = B;
@@ -137,10 +137,10 @@ public class OrderControl implements Tickable {
 		 * for now, probably won't keep
 		 * 
 		 */
-		if(B.binAvailable()) {
-			B.getBin();
-		}
-		
+//		if(B.binAvailable()) {
+//			B.getBin();
+//		}
+//		
 		
 	}
 }

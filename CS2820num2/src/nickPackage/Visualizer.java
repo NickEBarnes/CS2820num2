@@ -21,34 +21,35 @@ public class Visualizer extends JFrame implements Tickable{
 		private final int height = F.height * F.gridSize;
 		
 		private Screen(){
-			this.setBackground(Color.BLUE);
-			this.setBounds(10, 10, width, height);
-			this.setVisible(true);
+//			this.setBackground(Color.BLUE);
+//			this.setBounds(10, 10, width, height);
+//			this.setVisible(true);
 			
 		}
 
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			for(Point warehouseObject: MockFloor.FLOOR_LOCATIONS.values()) {
-				if( warehouseObject.getName() == "ROBOT") {
-					g.fillOval(warehouseObject.getX()*100, warehouseObject.getY()*100, 10, 10);
-					g.setColor(Color.GREEN);
-					System.out.println("found robot");
-				}
-				g.drawRect(warehouseObject.getX()*100, warehouseObject.getY()*100, 10, 10);
-				g.setColor(Color.BLACK);
-			}
-			for(Point beltObject: MockFloor.PACKERBELT) {
-				g.drawRect(beltObject.getX()*100, beltObject.getY()*100, 10, 10);
-				g.setColor(Color.BLACK);
-			}
-			for(Point beltObject: MockFloor.PICKERBELT) {
-				g.drawRect(beltObject.getX()*100, beltObject.getY()*100, 10, 10);
-				g.setColor(Color.BLACK);
-			}
-			
-		}
+
+//		@Override
+//		protected void paintComponent(Graphics g) {
+//			super.paintComponent(g);
+//			for(Point warehouseObject: MockFloor.FLOOR_LOCATIONS.values()) {
+//				if( warehouseObject.getName() == "ROBOT") {
+//					g.fillOval(warehouseObject.getX()*100, warehouseObject.getY()*100, 10, 10);
+//					g.setColor(Color.GREEN);
+//					System.out.println("found robot");
+//				}
+//				g.drawRect(warehouseObject.getX()*100, warehouseObject.getY()*100, 10, 10);
+//				g.setColor(Color.BLACK);
+//			}
+//			for(Point beltObject: MockFloor.PACKERBELT) {
+//				g.drawRect(beltObject.getX()*100, beltObject.getY()*100, 10, 10);
+//				g.setColor(Color.BLACK);
+//			}
+//			for(Point beltObject: MockFloor.PICKERBELT) {
+//				g.drawRect(beltObject.getX()*100, beltObject.getY()*100, 10, 10);
+//				g.setColor(Color.BLACK);
+//			}
+//			
+//		}
 		
 	}
 
@@ -69,11 +70,14 @@ public class Visualizer extends JFrame implements Tickable{
 		this.setLayout(null);
 		Screen screen = new Screen();
 		this.add(screen);
-		this.setVisible(true);
+		this.setVisible(false);
 	}
 
 	@Override
 	public void tick(int clk) {
 		
+	}
+	public boolean suspend(int suspticks, int currtick){
+		return true;
 	}
 }

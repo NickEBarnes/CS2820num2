@@ -1,225 +1,217 @@
 package nickPackage;
-//package production_unitTesting;
-//import warehouse_system.Report;
-//import warehouse_system.Tickable;
-//import warehouse_system.belt.Bin;
+
+ 
+
+
+
+
 
 import java.util.*;
+ 
+ 
+ 
+ 
+ 
+ //timing moving the bins has not been implemented yet, still waiting for 
+ //integration code. 
+ 
+ //integration with items in the orders still needed, will be involved 
+ //later
 
 
+////////Ted Herman, Nicholas Barnes
 
 
-
-//timing moving the bins has not been implemented yet, still waiting for 
-//integration code. 
-
-//integration with items in the orders still needed, will be involved 
-//later
-
-//import java.util.*;
-//Ted Herman, Nicholas Barnes
-//Hello 2
-
-public class Belt {
-public static MockFloor f = new MockFloor();
-//boolean binAvailable();  // true if Picker can get a new Bin
-//Bin getBin();  // called by Orders when Picker wants a new Bin 
-public static MockBelt mb = new MockBelt(f);
-//public static MockFloor mf;
-public static Point[] packBelt = { new Point(0,7),new Point(0,6),new Point(0,5),new Point(0,4) };
-public static Point packinIt = new Point(0,3);
-public static Point[] pickBelt = {packinIt, new Point(0,2),new Point(0,1),new Point(0,0) };
-public static Parcel mock = new Parcel();
-public static Point startPick = pickBelt[0];
-public static Point startPack = packBelt[0];
-public static Point endPick = pickBelt[2];
-public static Point endPack = packBelt[2];
-public static LinkedList<Bin> pickBins = new LinkedList<Bin>();
-public static LinkedList<Parcel> packParcels = new LinkedList<Parcel>();
-public static LinkedList<Parcel> dockParcels = new LinkedList<Parcel>();
-
-//packParcels.add(mock);
-
-public static void runBelt(){
-	  Point curr1 = pickBelt[0];
-	  Point curr2 = pickBelt[1];
-	  Point curr3 = pickBelt[2];
-	  Point pickHold = pickBelt[3];
-//	  System.out.println("Belt spot 1: " + startPick);
-//	  System.out.println("Belt spot 2: " + pickBelt[1]);
-//	  System.out.println("Belt spot 3: " + pickBelt[2]);
-	  pickBelt[0].move(pickBelt[1]);
-	  pickBelt[1].move(pickBelt[2]);
-	  pickBelt[2].move(pickBelt[3]);
-//	  System.out.println("Getting packed: " + pickBelt[3]);
-
-	 
-	  Point curr4 = packBelt[0];
-	  Point curr5 = packBelt[1];
-	  Point curr6 = packBelt[2];
-	  Point dock = packBelt[3];
-//	  System.out.println("Belt spot 4: " + packBelt[0]);
-//	  System.out.println("Belt spot 5: " + packBelt[1]);
-//	  System.out.println("Belt spot 6: " + packBelt[2]);
-	  pickBelt[3].move(packinIt); //move to packer point
-	  packBelt[0].move(curr5);
-	  packBelt[1].move(curr6);
-	  packBelt[2].move(dock);
-	  //packBelt[3]
-//	  pickBins.set(1, new Bin());
-//	  pickBins.set(2, new Bin());
-//	  pickBins.set(3, new Bin());
-//	  System.out.println("Getting packed: " + pickHold);
-//	  System.out.println("Belt spot 4: " + packBelt[0]);
-//	  System.out.println("Belt spot 5: " + packBelt[1]);
-//	  System.out.println("Belt spot 6: " + packBelt[2]);
-//	  Bin alBin1 = pickBins.get(0);
-//	  Bin alBin2 = pickBins.get(1);
-//	  Bin alBin3 = pickBins.get(2);
-//	  Bin packBin = pickBins.get(3);
-//	  String pi1s;
-//	  String pi2s;
-//	  String pi3s; 
-//	  String packS;
-	  
-	  
-//	  for(int i = 0; i < pickBins.size(); i++){
-//		   pi1s = alBin1.binOrder.getItemBeingOrdered().name;
-//		   pi2s = alBin2.binOrder.getItemBeingOrdered().name;
-//		   pi3s = alBin3.binOrder.getItemBeingOrdered().name;
-//		   packS = packBin.binOrder.getItemBeingOrdered().name;
-//		 // String pa1s = alPar1.binOrder.getItemBeingOrdered().name;
-//		 // String pa2s = alPar2.binOrder.getItemBeingOrdered().name;
-//		 // String pa3s = alPar2.binOrder.getItemBeingOrdered().name;
-//		 // String pa4s = alPar2.binOrder.getItemBeingOrdered().name;
-//	  }
-	  
-	  
-//	  System.out.println("pick belt 1: ");  //pickBelt[0]);
-//	  System.out.println("pick belt 2: "); //pickBelt[1]);
-//	  System.out.println("pick belt 3: "); //pickBelt[2]);
-//	  System.out.println("Packer: " ); //+ packinIt);
-//	  System.out.println("pack belt 1: "); // + packBelt[0]);
-//	  System.out.println("pack belt 2: "); //+ packBelt[1]);
-//	  System.out.println("pack belt 3: "); //+ packBelt[2]);
-//	  System.out.println("On dock: "); //+ packBelt[3]);
-//	  System.out.println(" ");
-//	  System.out.println(" ");
-}
-	  
-	  
-	  
- //not used, MockBelt overrides
-  public void tick(int count){
-      //runBelt();
-      //3System.out.println("hello");
- }
-  public static void doPicker(Order order){
-		pickBins.add(new Bin(order, startPick));
-		System.out.println("Started order " + order.getItemBeingOrderedName());
-	} 
-	private static void doPacker(Bin bin) {
-		packParcels.add( new Parcel( startPack, bin.binOrder));
-		//return new Parcel( startPack, bin.binOrder);
+public class Belt implements Tickable {
+	//public static MockFloor f = new MockFloor();
+    //boolean binAvailable();  // true if Picker can get a new Bin
+	//Bin getBin();  // called by Orders when Picker wants a new Bin 
+	//public static MockBelt mb = new MockBelt(f);
+	//public static MockFloor mf;
+	public static Point[] packBelt = { new Point(0,4),new Point(0,5),new Point(0,6),new Point(0,7) };
+//	public static Point packinIt = new Point(0,3);
+    public static Point[] pickBelt = {new Point(0,0), new Point(0,1),new Point(0,2),new Point(0,3) };
+   // public static Parcel mock;
+	public static Point startPick = pickBelt[0];
+	public static Point startPack = packBelt[0];
+	public static Point endPick = pickBelt[3];
+	public static Point endPack = packBelt[3];
+	public static LinkedList<Bin> pickBins = new LinkedList<Bin>();
+	public static LinkedList<Parcel> packParcels = new LinkedList<Parcel>();
+	public static LinkedList<Parcel> dockParcels = new LinkedList<Parcel>();
+    public static int dockAmount = 0;
+	public static Item RED_SHIRT = new Item("RED_SHIRT", 200, "1");
+	public static Item BLUE_SHIRT = new Item("BLUE_SHIRT", 300, "1");
+	public static Item BICYCLE = new Item("BICYCLE", 2, "2");
+	public static Item BASKETBALL = new Item("BASKETBALL", 50, "2");
+	public static Item SHAVING_CREAM= new Item("SHAVING_CREAM", 10, "3");
+	public static Item DUCT_TAPE = new Item("DUCT_TAPE", 1, "3");
+	public static Item BOOK = new Item("BOOK", 20, "4");
+	public static Item EGG_PLANT = new Item("EGG_PLANT", 2000, "5");
+	public static Item FLUTE = new Item("FLUTE", 5, "6");
+	public static Item Empty = new Item("Open");
+	
+	public static Order emptyOrd = new Order(Empty);
+    public static Order[] orderArr = {
+    		new Order(RED_SHIRT, 2, "501 South Dodge Street"),
+    		new Order(BLUE_SHIRT, 5, "313 South Gilbert Street"),
+    		new Order(BICYCLE, 1, "613 East Court Street"),
+    		new Order(BASKETBALL, 2, "512 North Dodge Street"),
+    		new Order(SHAVING_CREAM, 4, "902 Davenport Street"),
+    		new Order(DUCT_TAPE, 1, "451 East Market Street"),
+    		new Order(BOOK, 1, "222 Governor Street"),
+    		new Order(EGG_PLANT, 1, "378 Lucas Street"),
+    		new Order(FLUTE, 1, "987 Clinton Ave")
+    };
+	public static Random rn = new Random();
+	
+	
+	//packParcels.add(mock);
+	
+	
+	//not used but included since in interface
+	public boolean suspend(int suspticks, int currtick){
+		return true;
 	}
-   public LinkedList<Bin> getPickerItems(){
-	   return pickBins;
+
+public Belt(){
+		Point curr1 = pickBelt[0];
+		Point curr2 = pickBelt[1];
+		Point curr3 = pickBelt[2];
+		//Point curr4 = pickBelt[3];
+		Point pickHold = pickBelt[3];
+		Point curr4 = packBelt[0];
+		Point curr5 = packBelt[1];
+		Point curr6 = packBelt[2];
+		Point dock = packBelt[3];
+		  
+		//  System.out.println("Belt spot 1: " + startPick);
+		//  System.out.println("Belt spot 2: " + pickBelt[1]);
+		//  System.out.println("Belt spot 3: " + pickBelt[2]);
+		  pickBelt[0].setNext(curr2);
+		  pickBelt[1].setNext(curr3);
+		  //pickBelt[2].move(curr4);
+		  pickBelt[2].setNext(pickHold);
+		  //System.out.println("Getting packed: " + pickBelt[3]);
+
+
+		 //System.out.println("Belt spot 4: " + packBelt[0]);
+	     //System.out.println("Belt spot 5: " + packBelt[1]);
+	     //System.out.println("Belt spot 6: " + packBelt[2]);
+		 // pickBelt[3].move(); //move to packer point
+ 	      pickBelt[3].setNext(null);
+		  packBelt[0].setNext(curr5);
+		  packBelt[1].setNext(curr6);
+		  packBelt[2].setNext(dock);
+		  //packBelt[3]
+		 // pickBins.set(1, new Bin());
+		 // pickBins.set(2, new Bin());
+		 // pickBins.set(3, new Bin());
+	     //System.out.println("Getting packed: " + pickHold);
+	     //System.out.println("Belt spot 4: " + packBelt[0]);
+         //System.out.println("Belt spot 5: " + packBelt[1]);
+         //System.out.println("Belt spot 6: " + packBelt[2]);
+
+//   System.out.println("Random number: " + randNum);
+//   String randOrder = "order" + randNum;
+//   System.out.println(randOrder);
+
+ }
+   public void printBeltContents(){
+	   //old method that would print stuff
    }
-   public LinkedList<Parcel> getPackerItems(){
-	   return packParcels;
+
+   @Override
+   public void tick(int count){
+	  int randomIndex = rn.nextInt(9);
+ 	  count = count + 1;
+ 	  printBeltContents();    
+ 	  if(count % 8 == 1 ){
+ 		   addBin(orderArr[randomIndex]);
+		   
+ 	  }
+  	for(Parcel parcy : packParcels){
+		Point p = parcy.getParcelLocation();
+		if(p == startPack){
+			System.out.println("Parcel Added");
+			System.out.println("Parcel @ ("+ p.getX() + " , " + p.getY() + ") " );
+			parcy.setParcelLocation(p.getNext());	  			
+		}
+		if(p.getY() > 4 &&  p.getY() < 8){
+			System.out.println("Parcel @ ("+ p.getX() + " , " + p.getY() + ") ");
+			parcy.setParcelLocation(p.getNext());
+		}
+	
+		  if(p == packBelt[3]){
+			  Parcel doneParc = packParcels.removeLast();
+			  dockAmount++;
+			  System.out.println("Parcel put in truck");
+			  System.out.println("Parcels in truck = " + dockAmount);
+			  if(dockAmount > 3){
+				  dockParcels.clear();
+				  System.out.println("Truck full, left dock");
+			      dockParcels.add(doneParc);
+			  }
+			  continue;
+		}
+		  parcy.setParcelLocation(p.getNext());
+		
+	}
+      for(Bin b: pickBins){
+    	  
+    	  Point p = b.getBinLocation();
+    	  if(p.getY() < 3){
+    		  System.out.println("Bin @ ("+ p.getX() + " , " + p.getY() + ") "
+    				  			+ b.order.getItemBeingOrderedName());
+    	  }
+    	  
+    	  if(p.getY() == 3){
+    		  System.out.println("Bin @ Packer ("+ p.getX() + " , " + p.getY() + ") " 
+    				  			+ b.order.getItemBeingOrderedName());
+    	  }
+    	  if(p == endPick){
+    		  Bin newAdd = pickBins.remove();
+    		  packParcels.add(getParcel(newAdd));
+    		  System.out.println("Bin being packed"); 
+    		  //pickBins.remove();
+    		 
+    		  //continue;
+    		  
+    	  }
+    		  
+    	  b.setBinLocation(p.getNext());
+
+      }
+ 		  
+ 	  
+      
+  }
+   //picker method
+   public static void addBin(Order order){
+ 	    Bin b = new Bin(order, startPick);
+ 		pickBins.add(b);
+ 		System.out.println("New Bin: " + order.getItemBeingOrderedName());
+ 	} 
+   
+    //packer method
+ 	private static Parcel getParcel(Bin bin) {
+ 		//System.out.println("Loaded Parcel: x " + startPack.getName() );
+ 		//packParcels.add( new Parcel(bin.order, startPack));
+ 		return new Parcel( bin.order, startPack);
+ 	}
+    public LinkedList<Bin> getPickList(){
+ 	   return pickBins;
+    }
+    public LinkedList<Parcel> getPackList(){
+ 	   return packParcels;
    }
-//   
-//   public void check(int i){
-//	   if(pickBins.
-//   }
-  
-  
-  
-  
+    
+   public void check(int i){
+ 	   
+   }
+   
+ 
+   
+   
 }
-// private boolean isMovable();
 
-// public static String getBeltItem(Point p){
-//	   return p.getName();
-// }
-//}
-
-//public class Belt implements Tickable, Report{
-//	protected static int speed;
-//  protected static int capacity = 20;
-//  static ArrayList<Integer> beltGrid = new ArrayList<Integer>(capacity);
-//  protected static int orderNum ;
-//  
-//  
-//  public Belt(){
-//  	orderNum = (int)(Math.random() * 100.0);
-//  	speed = 2;
-//  	
-//  }
-//  
-//  //comment
-//  public int getSpeed(){
-//  	return speed;
-//  }
-//  public void setSpeed(int newSpeed){
-//  	speed = newSpeed;
-//  }
-//  public int getOrderNum(){
-//  	return orderNum;
-//   //	System.out.println("Order Number: " + orderNum);
-//  }
-//  public static void setOrderNum(int newOrder){
-//  	orderNum = newOrder;
-//  	
-//  }
-//  public static void moveRight(){
-//  	beltGrid.add(0 , 0);
-//  }
-//  public static void addBin(int orderNum){
-//  	beltGrid.add(0, orderNum);
-//  }
-//  public static boolean isPosEmpty(int index){
-//  	if (beltGrid.get(index) == 0){
-//  		System.out.println("Position " + index + " is empty");
-//  		return true;
-//  	} 
-//  	else{
-//  		System.out.println("Position " + index + " is filled");
-//  		return false;
-//  	}
-//  	
-//  }
-//	
-// @Override
-//	public void tick(int tick) {
-//		printEvent("...");
-//		
-//	}
-//
-//	@Override
-//	public void printEvent(String event) {
-//		System.out.println("Belt: " + event);	
-//	}
-//  
-//  public static void main(String args[]){
-//  	Bin myBin = new Bin();
-//  	Belt myBelt = new Belt();
-//  	addBin(52);
-//  	moveRight();
-//  	moveRight();
-//  	addBin(122);
-//  	moveRight();
-//  	addBin(10);
-//  	
-//  	//setOrderNum(200);
-//  	System.out.println("Order Number: " + orderNum);
-//  	System.out.println("List of orders on Belt:    (0 means empty)" );
-//  	for (int x=0; x< beltGrid.size(); x++){
-//  		System.out.println("Pos. " + x + ": " + beltGrid.get(x));
-//  	}
-//  	isPosEmpty(1);   
-//  	//System.out.print("Belt: " + beltGrid.get(0));
-//  	
-//  	
-//  	
-//  }

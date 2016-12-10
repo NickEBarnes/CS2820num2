@@ -1,15 +1,6 @@
 package nickPackage;
 
-//import src.Belt;
-//import src.Floor;
-//import src.InterruptedException;
-//import src.ItemController;
-//import src.OrderControl;
-//import src.Override;
-//import src.RobotScheduler;
-//import src.Runnable;
-//import src.Thread;
-//import src.Visualizer;
+import java.util.*;
 
 /**
  * 
@@ -21,9 +12,10 @@ public class Master implements Runnable {
 	 * 1. Master starts and continues simulation process
 	 * 2. Ticking Simulation: Master publishes ticks to other components
 	 */
-	private int limit = 100;				// default: limit = 100 ticks
+	private int limit = 1000000;				// default: limit = 100 ticks
 	private int unitTime = 1000;				// default: 1 second per tick
 	private boolean running = false;
+	private int input;
 	
 	private Belt B;
 	private Floor F;
@@ -36,20 +28,21 @@ public class Master implements Runnable {
 	/**
 	 * add all components here for possible unit test
 	 */
-	public Master(Belt b, Floor f, ItemController i, OrderControl o, RobotScheduler r, Visualizer v) {
+	public Master(Belt b, Floor f, ItemController i, OrderControl o, RobotScheduler r, Visualizer V) {
 		B = b;
 		F = f;
 		I = i;
 		O = o;
 		R = r;
-		V = v;
+		//V = v;
 	}
 
 	@Override
 	public void run() {
+		//numOfTicks();
 		int tick = 0;
-		while (running && tick < limit) {
-			System.out.println(tick + " tick");
+		while (tick < limit) {
+			System.out.println(tick + " tick(s)");
 			tick(tick);
 			System.out.println();
 			
@@ -69,12 +62,36 @@ public class Master implements Runnable {
 		running = false;
 	}
 	
+	/* 
+	 * numOfTicks method
+	 * 
+	 * author: Nicholas Barnes
+	 * 
+	 * */
+	public int numOfTicks(){
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter an integer: "); 
+
+		
+		while (!scan.hasNextInt()) 
+		{        
+		    scan.next(); 
+		    System.out.print("Please enter an integer: ");
+		}
+
+		
+		input = scan.nextInt(); // Get the integer
+		//System.out.println("Input: " + input);
+        return input;
+		
+	}
+	
 	public void setLimit(int count){
-		limit = count;
+		limit = numOfTicks();
 	}
 	
 	public void setUnitTime(int milliseconds){
-		unitTime = milliseconds;
+		unitTime = 400;
 	}
 	
 	private void unitTime(){
@@ -93,7 +110,7 @@ public class Master implements Runnable {
 		O.tick(tick);							// getting orders
 		R.tick(tick);              // updating RobotScheduler to control robots
 		B.tick(tick);                //tick through the belt
-		V.tick(tick);				// repainting everything
+		//V.tick(tick);				// repainting everything
 		
 	}
 	
