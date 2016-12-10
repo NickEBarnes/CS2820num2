@@ -63,12 +63,14 @@ public class Master implements Runnable {
 		running = false;
 	}
 	
-	/* 
-	 * numOfTicks method
-	 * 
-	 * author: Nicholas Barnes
-	 * 
-	 * */
+/**
+ * The numOfTicks() method is a prompt to the user to input how many ticks they
+ * would like to see. I thought it was a good idea for testing purposes.
+ * It wants an integer for input, otherwise it will keep asking again
+ * 
+ * @author Nicholas Barnes
+ * @return
+ */
 	public int numOfTicks(){
 		Scanner scan = new Scanner(System.in);
 		System.out.print("How many ticks would you like?: "); 
@@ -88,12 +90,17 @@ public class Master implements Runnable {
         
 		
 	}
-	/* 
-	 * printTruck method
+
+	/**
+	 * The printTruck method asks the user, upon completion of ticks if
+	 * they would like to see what all got shipped/what made it to the end of the
+	 * packer belt.
 	 * 
-	 * author: Nicholas Barnes
+	 * It wants input in the form of y, yes, yes, n, no, No
+	 * Otherwise it will keep asking for correct input
 	 * 
-	 * */
+	 * @author Nicholas Barnes
+	 */
 	public void printTruck(){
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Would you like to see completed parcels? (y/n): ");
