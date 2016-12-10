@@ -13,6 +13,13 @@ import java.util.List;
  * @author Di Huang
  */
 
+/**
+ * THIS IS NOT USED IN THE END PRODUCT
+ * 
+ * @author nicholasbarnes
+ *
+ */
+
 public class MockBelt extends Belt{
 	public static boolean stillMoving = false;
    //int mockTick = 0;
@@ -180,8 +187,8 @@ public class MockBelt extends Belt{
 	 // c.getContents();
 	  Object o = c.getContents();
 	  if (o == null) continue;  // skip empty cell
-	  if ((o instanceof Bin) && !((Bin)o).isFinished()) return false;
-	  if ((o instanceof Parcel) && !((Parcel)o).isFinished()) return false;
+	  if ((o instanceof Bin) && !((Bin)o).isitFinished()) return false;
+	  if ((o instanceof Parcel) && !((Parcel)o).isitFinished()) return false;
 	  }
 	return true;  // nothing stops belt from moving
     }

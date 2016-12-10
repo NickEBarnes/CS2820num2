@@ -18,7 +18,7 @@ public class FloorTest {
 	//@Test
 	public void test() {
 		//testing Point class
-		int [] t1 = p.getPoint();
+		//int [] t1 = p;
 		int[] tt1 = {2,5};
 		//assertArrayEquals(tt1,t1);
 		p.setPoint(5,2);
