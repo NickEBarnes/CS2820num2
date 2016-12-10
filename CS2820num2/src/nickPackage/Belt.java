@@ -107,7 +107,7 @@ public Belt(){
  }
 
 
-   @Override
+   //@Override
    public void tick(int count){
 	  int randomIndex = rn.nextInt(9);
  	  count = count + 1;
