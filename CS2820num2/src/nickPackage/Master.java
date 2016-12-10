@@ -1,6 +1,7 @@
 package nickPackage;
 
 import java.util.*;
+import nickPackage.Belt;
 
 /**
  * 
@@ -50,7 +51,7 @@ public class Master implements Runnable {
 			
 			tick++;
 		}
-
+		printTruck();
 	}
 	
 	public void start() {
@@ -70,7 +71,7 @@ public class Master implements Runnable {
 	 * */
 	public int numOfTicks(){
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter an integer: "); 
+		System.out.print("How many ticks would you like?: "); 
 
 		
 		while (!scan.hasNextInt()) 
@@ -82,8 +83,38 @@ public class Master implements Runnable {
 		
 		input = scan.nextInt(); // Get the integer
 		//System.out.println("Input: " + input);
-        return input;
+        //scan.close();
+		return input;
+        
 		
+	}
+	/* 
+	 * printTruck method
+	 * 
+	 * author: Nicholas Barnes
+	 * 
+	 * */
+	public void printTruck(){
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Would you like to see completed parcels? (y/n): ");
+		
+		
+		if(scan.hasNext("y") || scan.hasNext("yes") || scan.hasNext("Yes")){
+			scan.next();
+			Belt.printAllParcels();
+			System.out.println("\nSimulation complete");
+		}
+		if(scan.hasNext("n") || scan.hasNext("no") || scan.hasNext("No")){
+			scan.next();
+			System.out.println("\nSimulation complete");
+		}
+		else{
+			scan.next(); 
+		    System.out.print("Please enter y/n: ");
+			scan.next();
+			printTruck();
+		}
+		scan.close();
 	}
 	
 	public void setLimit(int count){

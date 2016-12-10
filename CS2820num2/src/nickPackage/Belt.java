@@ -1,37 +1,24 @@
 package nickPackage;
 
- 
-
-
-
-
 
 import java.util.*;
- 
- 
- 
- 
- 
- //timing moving the bins has not been implemented yet, still waiting for 
- //integration code. 
- 
- //integration with items in the orders still needed, will be involved 
- //later
 
 
-////////Ted Herman, Nicholas Barnes
+
+/*
+ * 
+ * Author: Ted Herman, Nicholas Barnes
+ * 
+ */
 
 
 public class Belt implements Tickable {
-	//public static MockFloor f = new MockFloor();
-    //boolean binAvailable();  // true if Picker can get a new Bin
-	//Bin getBin();  // called by Orders when Picker wants a new Bin 
-	//public static MockBelt mb = new MockBelt(f);
-	//public static MockFloor mf;
+	
+	
 	public static Point[] packBelt = { new Point(0,4),new Point(0,5),new Point(0,6),new Point(0,7) };
-//	public static Point packinIt = new Point(0,3);
+    //public static Point packinIt = new Point(0,3);
     public static Point[] pickBelt = {new Point(0,0), new Point(0,1),new Point(0,2),new Point(0,3) };
-   // public static Parcel mock;
+    // public static Parcel mock;
 	public static Point startPick = pickBelt[0];
 	public static Point startPack = packBelt[0];
 	public static Point endPick = pickBelt[3];
@@ -40,6 +27,7 @@ public class Belt implements Tickable {
 	public static LinkedList<Parcel> packParcels = new LinkedList<Parcel>();
 	public static LinkedList<Parcel> dockParcels = new LinkedList<Parcel>();
     public static int dockAmount = 0;
+    
 	public static Item RED_SHIRT = new Item("RED_SHIRT", 200, "1");
 	public static Item BLUE_SHIRT = new Item("BLUE_SHIRT", 300, "1");
 	public static Item BICYCLE = new Item("BICYCLE", 2, "2");
@@ -117,15 +105,13 @@ public Belt(){
 //   System.out.println(randOrder);
 
  }
-   public void printBeltContents(){
-	   //old method that would print stuff
-   }
+
 
    @Override
    public void tick(int count){
 	  int randomIndex = rn.nextInt(9);
  	  count = count + 1;
- 	  printBeltContents();    
+ 	     
  	  if(count % 8 == 1 ){
  		   addBin(orderArr[randomIndex]);
 		   
@@ -147,10 +133,11 @@ public Belt(){
 			  dockAmount++;
 			  System.out.println("Parcel put in truck");
 			  System.out.println("Parcels in truck = " + dockAmount);
+			  dockParcels.addLast(doneParc);
 			  if(dockAmount > 3){
-				  dockParcels.clear();
+				  //dockParcels.clear();
 				  System.out.println("Truck full, left dock");
-			      dockParcels.add(doneParc);
+			      //dockParcels.add(doneParc);
 			  }
 			  continue;
 		}
@@ -205,10 +192,19 @@ public Belt(){
     public LinkedList<Parcel> getPackList(){
  	   return packParcels;
    }
+    public static void printAllParcels(){
+    	System.out.println("\nItems delivered today: ");
+    	int ordNum = 1;
+    	for(Parcel p : dockParcels){
+    		
+    		System.out.println("\nOrder Num: " + ordNum + " Contents: " + p.order.getItemBeingOrderedName());
+    		ordNum++;
+    	}
+    }
     
-   public void check(int i){
- 	   
-   }
+//   public void check(int i){
+// 	   
+//   }
    
  
    
